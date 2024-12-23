@@ -1,0 +1,14 @@
+# Script Windows PowerShell pour le déploiement d’AD DS
+ 
+Install-ADDSForest `
+-DomainName "alphatech.local" `
+-CreateDnsDelegation:$false `
+-DatabasePath "C:\Windows\NTDS" `
+-DomainMode "WinThreshold" `
+-DomainNetbiosName "ALPHATECH" `
+-ForestMode "Win2016" `
+-InstallDns:$true `
+-LogPath "C:\Windows\NTDS" `
+-NoRebootOnCompletion:$false `
+-SysvolPath "C:\Windows\SYSVOL" `
+-Force:$true
