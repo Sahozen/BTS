@@ -7,6 +7,7 @@ sudo chown -R www-data:www-data /var/www/html/
 
 # Installation de MariaDB
 sudo apt install mariadb-server mariadb-client -y
+sudo mysql_secure_installation
 
 # Installation de PHP et des modules requis
 sudo apt install php php-mbstring php-zip php-gd php-json php-curl php-cli -y
