@@ -3,10 +3,10 @@ sudo apt update && sudo apt upgrade -y
 
 # Installation d'Apache
 sudo apt install apache2 -y
+sudo chown -R www-data:www-data /var/www/html/
 
 # Installation de MariaDB
 sudo apt install mariadb-server mariadb-client -y
-
 
 # Installation de PHP et des modules requis
 sudo apt install php php-mbstring php-zip php-gd php-json php-curl php-cli -y
@@ -16,6 +16,7 @@ sudo apt install phpmyadmin -y
 
 # Redémarrer Apache pour appliquer les changements
 sudo systemctl restart apache2
+sudo systemctl restart mariadb
 
 # (Facultatif) Créer un utilisateur pour MariaDB
 sudo mysql -u root -p
