@@ -113,8 +113,16 @@ sudo chmod -R 750 /var/lib/glpi/config
 sudo nano /var/lib/glpi/config/config_db.php
 public $dbhost = 'localhost';
 public $dbuser = 'glpiuser';
-public $dbpassword = 'Azerty123*21';
+public $dbpassword = 'Azerty123%21';
 public $dbdefault = 'glpi';
+
+
+sudo chown -R www-data:www-data /var/lib/glpi/config
+sudo chmod -R 750 /var/lib/glpi/config
+sudo chown -R www-data:www-data /var/www/html/glpi/config
+sudo chmod -R 750 /var/www/html/glpi/config
+sudo systemctl restart apache2
+sudo systemctl restart mysql
 
 
 sudo systemctl reload apache2
