@@ -30,3 +30,13 @@ User=root
 [Install]
 WantedBy=multi-user.target
 
+sudo systemctl daemon-reload
+sudo systemctl enable glpi-agent
+sudo systemctl start glpi-agent
+sudo systemctl status glpi-agent
+
+glpi-agent --server http://172.16.1.4/glpi/front/inventory.php --debug
+/opt/glpi-agent/bin/glpi-agent --server http://172.16.1.4/glpi/front/inventory.php
+rm -rf ~/Téléchargements/GLPI-Agent-1.11
+
+
