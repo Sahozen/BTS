@@ -1,40 +1,13 @@
 #Linux agent 
-sudo apt install perl libwww-perl libjson-perl libnet-ssleay-perl libnet-cups-perl libproc-daemon-perl
-sudo mkdir -p /opt/glpi-agent
-cd Téléchargement
-sudo wget https://github.com/glpi-project/glpi-agent/releases/download/1.11/GLPI-Agent-1.11.tar.gz
-tar -xvzf GLPI-Agent-1.11.tar.gz
-sudo mv ~/Téléchargements/GLPI-Agent-1.11/* /opt/glpi-agent/
-cd /opt/glpi-agent
-sudo chown -R root:root /opt/glpi-agent
-sudo chmod -R 755 /opt/glpi-agent
-sudo ln -s /opt/glpi-agent/bin/glpi-agent /usr/local/bin/glpi-agent
-sudo ln -s /opt/glpi-agent/bin/* /usr/local/bin/
-sudo glpi-agent --server http://172.16.1.4/glpi/front/inventory.php
+wget https://github.com/glpi-project/glpi-agent/releases/download/1.11/glpi-agent_1.11-1_all.deb
+sudo apt update
+sudo apt install -y wget curl perl libwww-perl libjson-perl libnet-ssleay-perl libnet-cups-perl libproc-daemon-perl
+sudo dpkg -i glpi-agent_1.11-1_all.deb
+glpi-agent --version
 sudo systemctl enable glpi-agent
 sudo systemctl start glpi-agent
-systemctl status glpi-agent
-
-sudo nano /etc/systemd/system/glpi-agent.service
-
-
-[Unit]
-Description=GLPI Agent
-After=network.target
-
-[Service]
-Environment=PERL5LIB=/opt/glpi-agent/lib
-ExecStart=/usr/bin/perl -I/opt/glpi-agent/lib /opt/glpi-agent/bin/glpi-agent --server http://172.16.1.4/glpi/front/inventory.php
-Restart=always
-User=root
-
-[Install]
-WantedBy=multi-user.target
-
-sudo systemctl daemon-reload
-sudo systemctl enable glpi-agent
-sudo systemctl start glpi-agent
-sudo systemctl status glpi-agent
+-sudo systemctl status glpi-agent
+sudo glpi-agent --server http://172.16.1.4/glpi/front/inventory.php --debug
 
 
 
