@@ -9,7 +9,7 @@ sudo systemctl restart apache2
 
 # Télécharger et installer GLPI
 cd /var/www/html
-sudo wget https://github.com/glpi-project/glpi/releases/download/10.0.10/glpi-10.0.10.tgz
+wget https://github.com/glpi-project/glpi/releases/download/10.0.12/glpi-10.0.12.tgz
 sudo tar -xzvf glpi-10.0.12.tgz
 
 # Permissions pour GLPI
