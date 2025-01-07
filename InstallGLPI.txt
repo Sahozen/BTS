@@ -105,6 +105,12 @@ sudo nano /etc/apache2/sites-available/glpi.conf
 
 sudo systemctl reload apache2
 
+sudo rm -rf /var/www/html/glpi/config
+sudo ln -s /var/lib/glpi/config /var/www/html/glpi/config
+sudo chown -R www-data:www-data /var/lib/glpi/config
+sudo chmod -R 750 /var/lib/glpi/config
+
+sudo systemctl reload apache2
 
 /////////////////Depanage///////////////////
 cd /tmp
