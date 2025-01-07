@@ -58,4 +58,19 @@ curl -I http://172.16.1.4/glpi/front/inventory.php
 ls /opt/glpi-agent/lib/setup.pm
 export PERL5LIB=/opt/glpi-agent/lib
 
+sudo systemctl stop glpi-agent
+sudo systemctl disable glpi-agent
+sudo rm /etc/systemd/system/glpi-agent.service
+sudo systemctl daemon-reload
+sudo rm -rf /opt/glpi-agent
+sudo rm /usr/local/bin/glpi-agent
+sudo rm /usr/local/bin/glpi-inventory
+sudo rm /usr/local/bin/glpi-netinventory
+sudo rm /usr/local/bin/glpi-netdiscovery
+sudo rm /usr/local/bin/glpi-remote
+sudo rm /usr/local/bin/glpi-wakeonlan
+source ~/.bashrc
+rm -rf ~/Téléchargements/GLPI-Agent-1.11.tar.gz
+
+
 
