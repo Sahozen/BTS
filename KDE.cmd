@@ -9,6 +9,8 @@ cp -r ~/Téléchargements/Sweet ~/.local/share/plasma/desktoptheme/
 sudo cp -r ~/Téléchargements/Sweet /usr/share/plasma/desktoptheme/
 ls -l /usr/share/plasma/desktoptheme/
 cd ~/.local/share/plasma/desktoptheme/Sweet
+X-KDE-PluginInfo-Category=Plasma/LookAndFeel
+
 sudo chmod -R 755 /usr/share/plasma/desktoptheme/Sweet
 kquitapp5 plasmashell && kstart5 plasmashell
 sudo reboot
