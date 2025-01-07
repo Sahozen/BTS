@@ -46,4 +46,5 @@ sudo systemctl status glpi-agent
 
 sudo glpi-agent --server http://172.16.1.4/glpi/front/inventory.php --debug
 curl -I http://172.16.1.4/glpi/front/inventory.php
+ls /opt/glpi-agent/lib/setup.pm
 
