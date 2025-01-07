@@ -1,5 +1,5 @@
 #Linux agent 
-sudo apt install perl libwww-perl libjson-perl
+sudo apt install perl libwww-perl libjson-perl libnet-ssleay-perl libnet-cups-perl libproc-daemon-perl
 sudo mkdir -p /opt/glpi-agent
 cd Téléchargement
 sudo wget https://github.com/glpi-project/glpi-agent/releases/download/1.11/GLPI-Agent-1.11.tar.gz
@@ -23,7 +23,7 @@ Description=GLPI Agent
 After=network.target
 
 [Service]
-ExecStart=/opt/glpi-agent/bin/glpi-agent --server http://172.16.1.4/glpi/front/inventory.php
+ExecStart=/usr/bin/perl -I/opt/glpi-agent/lib /opt/glpi-agent/bin/glpi-agent --server http://172.16.1.4/glpi/front/inventory.php
 Restart=always
 User=root
 
