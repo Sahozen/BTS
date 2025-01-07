@@ -70,9 +70,22 @@ sudo mv files /var/lib/glpi/
 sudo mv config /var/lib/glpi/
 
 sudo nano /var/lib/glpi/config/config_db.php
-'root_doc' => '/var/www/html/glpi',
-'files_dir' => '/var/lib/glpi/files',
-'config_dir' => '/var/lib/glpi/config',
+<?php
+class DB extends DBmysql {
+    public $dbhost = 'localhost';
+    public $dbuser = 'glpiuser';
+    public $dbpassword = 'Azerty123*21';
+    public $dbdefault = 'glpi';
+    public $use_utf8mb4 = true;
+    public $allow_myisam = false;
+    public $allow_datetime = false;
+    public $allow_signed_keys = false;
+}
+
+// Déplacement des répertoires sensibles
+define('GLPI_ROOT_DOC', '/var/www/html/glpi');
+define('GLPI_FILES_DIR', '/var/lib/glpi/files');
+define('GLPI_CONFIG_DIR', '/var/lib/glpi/config');
 
 sudo nano /etc/apache2/sites-available/glpi.conf
 
