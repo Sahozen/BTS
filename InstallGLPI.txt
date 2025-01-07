@@ -29,6 +29,32 @@ Initialiser sur le serveur web avant de supprimer le installphp
 # Supprimer le fichier d'installation pour sécuriser GLPI
 sudo rm /var/www/html/glpi/install/install.php
 
+
+#pour securiser l'installation 
+cd /var/www/html/glpi/install
+sudo rm install.php
+
+#Sécuriser le dossier racine du serveur web
+sudo nano /etc/apache2/sites-available/glpi.conf
+<Directory /var/www/html/glpi>
+    Options Indexes FollowSymLinks
+    AllowOverride All
+    Require all granted
+</Directory>
+
+<Directory /var/www/html/glpi/files>
+    Order Deny,Allow
+    Deny from All
+</Directory>
+
+<Directory /var/www/html/glpi/config>
+    Order Deny,Allow
+    Deny from All
+</Directory>
+
+sudo systemctl restart apache2
+
+
 /////////////////Depanage///////////////////
 cd /tmp
 wget https://github.com/glpi-project/glpi/releases/download/10.0.10/glpi-10.0.10.tgz
