@@ -4,5 +4,6 @@ sudo apt update
 sudo apt upgrade -y
 sudo apt install kde-cli-tools
 kquitapp5 plasmashell && kstart5 plasmashell
-
-  
+mkdir -p ~/.local/share/plasma/desktoptheme
+cp -r ~/Téléchargements/Sweet ~/.local/share/plasma/desktoptheme/
+sudo cp -r ~/Téléchargements/Sweet /usr/share/plasma/desktoptheme/
