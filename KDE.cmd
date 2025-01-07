@@ -7,5 +7,5 @@ kquitapp5 plasmashell && kstart5 plasmashell
 mkdir -p ~/.local/share/plasma/desktoptheme
 cp -r ~/Téléchargements/Sweet ~/.local/share/plasma/desktoptheme/
 sudo cp -r ~/Téléchargements/Sweet /usr/share/plasma/desktoptheme/
-ls ~/.local/share/plasma/desktoptheme/
-ls /usr/share/plasma/desktoptheme/
+ls -l /usr/share/plasma/desktoptheme/
+cd ~/.local/share/plasma/desktoptheme/Sweet
