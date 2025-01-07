@@ -23,6 +23,7 @@ Description=GLPI Agent
 After=network.target
 
 [Service]
+Environment=PERL5LIB=/opt/glpi-agent/lib
 ExecStart=/usr/bin/perl -I/opt/glpi-agent/lib /opt/glpi-agent/bin/glpi-agent --server http://172.16.1.4/glpi/front/inventory.php
 Restart=always
 User=root
