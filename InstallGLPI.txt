@@ -2,7 +2,7 @@
 sudo apt update && sudo apt upgrade -y
 
 # Installation des extensions PHP nécessaires
-sudo apt install php-curl php-gd php-mbstring php-xml php-xmlrpc php-zip php-intl php-bz2 php-json php-cli php-apcu -y
+sudo apt install php-curl php-gd php-mbstring php-xml php-xmlrpc php-zip php-intl php-bz2 php-json php-cli php-apcu php-intl -y
 
 # Redémarrer Apache
 sudo systemctl restart apache2
