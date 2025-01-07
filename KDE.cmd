@@ -14,3 +14,13 @@ X-KDE-PluginInfo-Category=Plasma/LookAndFeel
 sudo chmod -R 755 /usr/share/plasma/desktoptheme/Sweet
 kquitapp5 plasmashell && kstart5 plasmashell
 sudo reboot
+
+mkdir -p ~/.local/share/icons
+cp -r ~/Téléchargements/candy-icons ~/.local/share/icons/
+cp -r ~/Téléchargements/Sweet ~/.local/share/plasma/desktoptheme/
+mkdir -p ~/.local/share/color-schemes
+cp ~/Téléchargements/*.colorscheme ~/.local/share/color-schemes/
+mkdir -p ~/.local/share/aurorae/themes
+cp -r ~/Téléchargements/Vivid-Blur-Dark-Aurorae-6 ~/.local/share/aurorae/themes/
+
+
