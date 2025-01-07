@@ -54,7 +54,7 @@ sudo nano /etc/apache2/sites-available/glpi.conf
 
 sudo systemctl restart apache2
 
-pour php
+#pour php
 sudo nano /etc/php/8.2/apache2/php.ini
 
 chercher : session.cookie_httponly = On
@@ -63,6 +63,34 @@ il doit être sur ON
 
 sudo systemctl restart apache2
 
+#securisation fichier critique hors du repertoire racine
+cd /var/www/html/glpi
+sudo mkdir -p /var/lib/glpi
+sudo mv files /var/lib/glpi/
+sudo mv config /var/lib/glpi/
+
+sudo nano /var/lib/glpi/config/config_db.php
+'root_doc' => '/var/www/html/glpi',
+'files_dir' => '/var/lib/glpi/files',
+'config_dir' => '/var/lib/glpi/config',
+
+sudo nano /etc/apache2/sites-available/glpi.conf
+
+<Directory /var/www/html/glpi>
+    Options Indexes FollowSymLinks
+    AllowOverride All
+    Require all granted
+</Directory>
+
+<Directory /var/www/html/glpi/files>
+    Require all denied
+</Directory>
+
+<Directory /var/www/html/glpi/config>
+    Require all denied
+</Directory>
+
+sudo systemctl reload apache2
 
 
 /////////////////Depanage///////////////////
