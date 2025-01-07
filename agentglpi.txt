@@ -44,4 +44,6 @@ sudo systemctl daemon-reload
 sudo systemctl restart glpi-agent
 sudo systemctl status glpi-agent
 
+sudo glpi-agent --server http://172.16.1.4/glpi/.php --partial=false --debug
+curl -I http://172.16.1.4/glpi/.php
 
