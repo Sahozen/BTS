@@ -1,0 +1,38 @@
+# Mise à jour du système
+sudo apt update && sudo apt upgrade -y
+
+# Installation des extensions PHP nécessaires
+sudo apt install php-curl php-gd php-mbstring php-xml php-xmlrpc php-zip php-intl php-bz2 php-json php-cli php-apcu -y
+
+# Redémarrer Apache
+sudo systemctl restart apache2
+
+# Télécharger et installer GLPI
+cd /var/www/html
+sudo wget https://github.com/glpi-project/glpi/releases/download/10.0.10/glpi-10.0.10.tgz
+sudo tar -xvzf glpi-10.0.10.tgz
+
+# Permissions pour GLPI
+sudo chown -R www-data:www-data /var/www/html/glpi
+sudo chmod -R 755 /var/www/html/glpi
+
+# Créer une base de données pour GLPI
+sudo mysql -u root -p
+CREATE DATABASE glpi CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
+CREATE USER 'Admin'@'localhost' IDENTIFIED BY 'Azerty';
+GRANT ALL PRIVILEGES ON glpi.* TO 'Admin'@'localhost';
+FLUSH PRIVILEGES;
+QUIT;
+
+Initialiser sur le serveur web avant de supprimer le installphp
+
+# Supprimer le fichier d'installation pour sécuriser GLPI
+sudo rm /var/www/html/glpi/install/install.php
+
+/////////////////Depanage///////////////////
+cd /tmp
+wget https://github.com/glpi-project/glpi/releases/download/10.0.10/glpi-10.0.10.tgz
+tar -xvzf glpi-10.0.10.tgz
+sudo cp /tmp/glpi/install/install.php /var/www/html/glpi/install/
+sudo chown -R www-data:www-data /var/www/html/glpi/install
+sudo chmod -R 755 /var/www/html/glpi/install
