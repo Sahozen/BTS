@@ -54,6 +54,14 @@ sudo nano /etc/apache2/sites-available/glpi.conf
 
 sudo systemctl restart apache2
 
+pour php
+sudo nano /etc/php/8.2/apache2/php.ini
+
+session.cookie_httponly = On
+
+sudo systemctl restart apache2
+
+
 
 /////////////////Depanage///////////////////
 cd /tmp
