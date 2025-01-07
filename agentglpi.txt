@@ -40,3 +40,8 @@ glpi-agent --server http://172.16.1.4/glpi/front/inventory.php --debug
 rm -rf ~/Téléchargements/GLPI-Agent-1.11
 
 
+sudo systemctl daemon-reload
+sudo systemctl restart glpi-agent
+sudo systemctl status glpi-agent
+
+
