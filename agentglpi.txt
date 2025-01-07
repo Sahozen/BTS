@@ -47,6 +47,8 @@ sudo systemctl restart glpi-agent
 sudo systemctl status glpi-agent
 
 sudo glpi-agent --server http://172.16.1.4/glpi/front/inventory.php --debug
+sudo perl -I/opt/glpi-agent/lib /opt/glpi-agent/bin/glpi-agent --server http://172.16.1.4/glpi/front/inventory.php --debug
+
 curl -I http://172.16.1.4/glpi/front/inventory.php
 ls /opt/glpi-agent/lib/setup.pm
 export PERL5LIB=/opt/glpi-agent/lib
