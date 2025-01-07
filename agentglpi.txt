@@ -14,3 +14,19 @@ sudo glpi-agent --server http://172.16.1.4/glpi/front/inventory.php
 sudo systemctl enable glpi-agent
 sudo systemctl start glpi-agent
 systemctl status glpi-agent
+
+sudo nano /etc/systemd/system/glpi-agent.service
+
+
+[Unit]
+Description=GLPI Agent
+After=network.target
+
+[Service]
+ExecStart=/opt/glpi-agent/bin/glpi-agent --server http://172.16.1.4/glpi/front/inventory.php
+Restart=always
+User=root
+
+[Install]
+WantedBy=multi-user.target
+
