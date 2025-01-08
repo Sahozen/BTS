@@ -8,8 +8,23 @@ glpi-agent --version
 sudo systemctl enable glpi-agent
 sudo systemctl start glpi-agent
 -sudo systemctl status glpi-agent
-sudo glpi-agent --server http://172.16.1.4/glpi/front/inventory.php --debug
+sudo glpi-agent --server http://glpi.alphatech.local/glpi/front/inventory.php --debug
 rm -rf ~/Téléchargements/GLPI-Agent-1.11.tar.gz
 
+sudo systemctl stop glpi-agent
+sudo systemctl disable glpi-agent
+sudo apt remove --purge glpi-agent -y
+sudo rm -rf /etc/glpi-agent
+sudo rm -rf /var/log/glpi-agent
+sudo rm -rf /var/lib/glpi-agent
+sudo find / -name "glpi-agent" 2>/dev/null
 
+
+cd /var/log/glpi-agent
+ls -l
+sudo tail -f glpi-agent.log
+sudo cat glpi-agent.log
+
+sudo journalctl -u glpi-agent
+sudo grep "server" /var/log/glpi-agent/glpi-agent.log
 
