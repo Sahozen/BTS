@@ -6,9 +6,10 @@ sudo apt-get update && sudo apt-get upgrade -y
 
 # 3. Installation Apache, DB, PHP
 sudo apt-get install apache2 php mariadb-server
-
-# 4. Sécurisation MySQL/MariaDB + paquet necessaire à glpi
 sudo mysql_secure_installation
+
+# 4.  paquet necessaire à glpi
+
 sudo apt-get install php-xml php-common php-json php-mysql php-mbstring php-curl php-gd php-intl php-zip php-bz2 php-imap php-apcu
 sudo apt-get install php-ldap
 
