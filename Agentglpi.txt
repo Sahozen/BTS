@@ -71,5 +71,16 @@ sudo nano /etc/apache2/sites-available/glpi.alphatech.local.conf
     </FilesMatch>
 </VirtualHost>
 
+sudo a2ensite glpi.alphatech.local.conf
+sudo systemctl reload apache2
+
+sudo nano /etc/php/8.2/apache2/php.ini
+
+session.cookie_httponly = On
+upload_max_filesize = 20M
+post_max_size = 20M
+
+sudo systemctl restart php8.2-fpm.service
+sudo systemctl restart apache2
 
 
