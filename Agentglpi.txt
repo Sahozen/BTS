@@ -14,8 +14,8 @@ sudo systemctl restart apache2
 sudo systemctl enable glpi-agent
 sudo systemctl start glpi-agent
 sudo systemctl status glpi-agent
-curl -v http://glpi.alphatech.local/glpi/front/inventory.php
-sudo glpi-agent --server http://glpi.alphatech.local/glpi/front/inventory.php --debug
+curl -v http://glpi.alphatech.local/front/inventory.php
+sudo glpi-agent --server http://glpi.alphatech.local/front/inventory.php --debug
 rm -rf ~/Téléchargements/GLPI-Agent-1.11.tar.gz
 
 sudo nano /etc/apache2/sites-available/glpi.conf
