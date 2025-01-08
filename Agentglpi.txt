@@ -3,7 +3,7 @@ cd /tmp
 wget https://github.com/glpi-project/glpi-agent/releases/download/1.11/glpi-agent_1.11-1_all.deb
 sudo apt update
 sudo apt install -y wget curl perl libwww-perl libjson-perl libnet-ssleay-perl libnet-cups-perl libproc-daemon-perl
-sudo apt install libnet-ip-perl libnet-ssh2-perl libparse-edid-perl libparallel-forkmanager-perl libuniversal-require-perl libfile-which-perl libxml-libxml-perl libyaml-perl libtext-template-perl libcpanel-json-xs-perl libyaml-tiny-perl libsocket-getaddrinfo-perl libdata-uuid-perl
+sudo apt install libnet-ip-perl libnet-ssh2-perl libparse-edid-perl libparallel-forkmanager-perl libuniversal-require-perl libfile-which-perl libxml-libxml-perl libyaml-perl libtext-template-perl libcpanel-json-xs-perl libyaml-tiny-perl libsocket-getaddrinfo-perl libdata-uuid-perl install libdbi-perl libdbd-mysql-perl
 sudo dpkg -i glpi-agent_1.11-1_all.deb
 glpi-agent --version
 sudo chown -R www-data:www-data /var/www/glpi
@@ -25,6 +25,12 @@ sudo systemctl reload apache2
 sudo a2enmod rewrite proxy_fcgi
 sudo systemctl reload apache2
 
+sudo systemctl unmask glpi-agent
+sudo systemctl enable glpi-agent
+sudo systemctl start glpi-agent
+
+sudo nano /etc/glpi-agent/agent.cfg
+server = http://glpi.alphatech.local/glpi/front/inventory.php
 
 sudo systemctl stop glpi-agent
 sudo systemctl disable glpi-agent
