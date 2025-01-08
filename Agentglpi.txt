@@ -111,3 +111,11 @@ sudo glpi-agent --server http://glpi.alphatech.local/front/inventory.php --debug
 </IfModule>
 
 
+sudo apt remove --purge glpi-agent
+sudo apt autoremove --purge
+sudo apt clean
+sudo rm -rf /etc/glpi-agent
+sudo systemctl stop glpi-agent
+sudo systemctl disable glpi-agent
+ps aux | grep glpi-agent
+
