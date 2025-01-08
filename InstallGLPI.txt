@@ -91,6 +91,10 @@ sudo chown www-data:www-data /var/lib/glpi/config/config_db.php
 sudo chmod 640 /var/lib/glpi/config/config_db.php
 
 
+sudo chown -R www-data:www-data /var/lib/glpi/
+sudo chmod -R 750 /var/lib/glpi/
+sudo chmod 640 /var/lib/glpi/config/config_db.php
+
 sudo nano /etc/apache2/sites-available/glpi.conf
 
 <VirtualHost *:80>
