@@ -7,7 +7,8 @@ sudo dpkg -i glpi-agent_1.11-1_all.deb
 glpi-agent --version
 sudo systemctl enable glpi-agent
 sudo systemctl start glpi-agent
--sudo systemctl status glpi-agent
+sudo systemctl status glpi-agent
+curl -v http://glpi.alphatech.local/glpi/front/inventory.php
 sudo glpi-agent --server http://glpi.alphatech.local/glpi/front/inventory.php --debug
 rm -rf ~/Téléchargements/GLPI-Agent-1.11.tar.gz
 
