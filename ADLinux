@@ -1,0 +1,42 @@
+# 1. Mise à jour des paquets et installation des outils nécessaires
+sudo apt update && sudo apt install -y realmd sssd sssd-tools adcli krb5-user samba-common-bin
+# - realmd : Découverte et connexion au domaine AD
+# - sssd : Authentification avec le domaine
+# - adcli : Outils pour joindre un domaine
+# - krb5-user : Configuration de Kerberos pour le domaine
+# - samba-common-bin : Utilitaires liés à Samba
+
+# 2. Configurer le DNS pour pointer vers le contrôleur de domaine
+sudo nano /etc/resolv.conf
+# Ajoutez ou remplacez cette ligne dans le fichier :
+# nameserver 172.16.1.1
+# Enregistrez (Ctrl+O, Enter) et quittez (Ctrl+X)
+
+# 3. Tester la résolution DNS
+nslookup alphatech.local
+# Cette commande doit retourner 172.16.1.1 comme réponse. Si ce n'est pas le cas, vérifiez le DNS.
+
+# 4. Joindre la machine au domaine
+sudo realm join --user=Administrateur alphatech.local
+# - Vous serez invité à entrer le mot de passe : Azerty123!
+# - Cette commande ajoute la machine au domaine "alphatech.local".
+
+# 5. Vérifier si la machine est bien dans le domaine
+realm list
+# Cette commande doit afficher le domaine alphatech.local avec ses informations.
+
+# 6. Tester l'authentification d'un utilisateur du domaine
+id utilisateur@alphatech.local
+# Remplacez "utilisateur" par le nom d'un utilisateur valide du domaine.
+# Si l'utilisateur est reconnu, cela confirme que l'authentification fonctionne.
+
+# 7. Vérifier les tickets Kerberos
+klist
+# Cette commande doit lister un ticket valide pour alphatech.local.
+
+# 8. Vérifier les journaux en cas de problème
+journalctl -u sssd.service
+# Consultez les journaux pour diagnostiquer les éventuelles erreurs liées à SSSD.
+
+cat /var/log/auth.log
+# Les logs d'authentification peuvent aussi indiquer les erreurs ou réussites.
