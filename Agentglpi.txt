@@ -101,5 +101,6 @@ sudo apt-get install libdata-uuid-perl
 sudo systemctl restart glpi-agent
 sudo glpi-agent --server http://glpi.alphatech.local/front/inventory.php --debug
 
-
+    Options FollowSymLinks
+    AllowOverride All
 
