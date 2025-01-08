@@ -147,3 +147,26 @@ http://glpi.alphatech.local
 
 sudo a2ensite glpi.alphatech.local
 sudo systemctl reload apache2
+
+
+ls /etc/apache2/sites-available/
+
+sudo nano /etc/apache2/sites-available/glpi.alphatech.local.conf
+
+<VirtualHost *:80>
+    ServerName glpi.alphatech.local
+    DocumentRoot /var/www/glpi/public
+
+    <Directory /var/www/glpi/public>
+        Require all granted
+        RewriteEngine On
+        RewriteCond %{REQUEST_FILENAME} !-f
+        RewriteRule ^(.*)$ index.php [QSA,L]
+    </Directory>
+
+    <FilesMatch \.php$>
+        SetHandler "proxy:unix:/run/php/php8.2-fpm.sock|fcgi://localhost/"
+    </FilesMatch>
+
+</VirtualHost>
+
