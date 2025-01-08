@@ -8,6 +8,7 @@ sudo dpkg -i glpi-agent_1.11-1_all.deb
 glpi-agent --version
 sudo chown -R www-data:www-data /var/www/glpi
 sudo chmod -R 755 /var/www/glpi
+sudo a2enmod rewrite
 sudo systemctl restart apache2
 sudo systemctl enable glpi-agent
 sudo systemctl start glpi-agent
