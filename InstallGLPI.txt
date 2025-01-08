@@ -74,7 +74,7 @@ sudo nano /var/lib/glpi/config/config_db.php
 class DB extends DBmysql {
     public $dbhost = 'localhost';
     public $dbuser = 'glpiuser';
-    public $dbpassword = 'Azerty123*21';
+    public $dbpassword = 'Azerty123!';
     public $dbdefault = 'glpi';
     public $use_utf8mb4 = true;
     public $allow_myisam = false;
@@ -86,6 +86,10 @@ class DB extends DBmysql {
 define('GLPI_ROOT_DOC', '/var/www/html/glpi');
 define('GLPI_FILES_DIR', '/var/lib/glpi/files');
 define('GLPI_CONFIG_DIR', '/var/lib/glpi/config');
+
+sudo chown www-data:www-data /var/lib/glpi/config/config_db.php
+sudo chmod 640 /var/lib/glpi/config/config_db.php
+
 
 sudo nano /etc/apache2/sites-available/glpi.conf
 
