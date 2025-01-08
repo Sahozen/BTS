@@ -143,5 +143,7 @@ sudo chown -R www-data:www-data /var/www/html/glpi/install
 sudo chmod -R 755 /var/www/html/glpi/install
 
 sudo rm /var/lib/glpi/config/config_db.php
+sudo rm -rf /var/www/html/glpi
+sudo rm -rf /var/lib/glpi
 
 
