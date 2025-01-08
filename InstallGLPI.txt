@@ -1,10 +1,14 @@
 # Créer une base de données pour GLPI
 sudo mysql -u root -p
 CREATE DATABASE glpi CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
-CREATE USER 'Admin'@'localhost' IDENTIFIED BY 'Azerty';
+CREATE USER 'glpiuser'@'localhost' IDENTIFIED BY 'Azerty123!';
 GRANT ALL PRIVILEGES ON glpi.* TO 'Admin'@'localhost';
 FLUSH PRIVILEGES;
 QUIT;
+
+# mise en place dns 
+sudo nano /etc/hosts
+172.16.1.4    glpi.alphatech.local
 
 # Mise à jour du système
 sudo apt update && sudo apt upgrade -y
@@ -56,28 +60,23 @@ Initialiser sur le serveur web avant de supprimer le installphp
 
 
 #Sécuriser le dossier racine du serveur web
-sudo nano /etc/apache2/sites-available/glpi.conf
+sudo nano /etc/apache2/sites-available/glpi.alphatech.local.conf
+
 <VirtualHost *:80>
     ServerName glpi.alphatech.local
-
     DocumentRoot /var/www/glpi/public
-
-    # If you want to place GLPI in a subfolder of your site (e.g. your virtual host is serving multiple applications),
-    # you can use an Alias directive. If you do this, the DocumentRoot directive MUST NOT target the GLPI directory itself.
-    # Alias "/glpi" "/var/www/glpi/public"
 
     <Directory /var/www/glpi/public>
         Require all granted
-
         RewriteEngine On
-
-        # Redirect all requests to GLPI router, unless file exists.
         RewriteCond %{REQUEST_FILENAME} !-f
         RewriteRule ^(.*)$ index.php [QSA,L]
     </Directory>
+
     <FilesMatch \.php$>
         SetHandler "proxy:unix:/run/php/php8.2-fpm.sock|fcgi://localhost/"
     </FilesMatch>
+
 </VirtualHost>
 
 sudo a2ensite glpi.alphatech.local
@@ -128,8 +127,6 @@ sudo rm /var/lib/glpi/config/config_db.php
 sudo rm -rf /var/www/html/glpi
 sudo rm -rf /var/lib/glpi
 
-sudo nano /etc/hosts
-172.16.1.4    glpi.alphatech.local
 
 
 sudo ls /etc/apache2/sites-available/
@@ -151,22 +148,5 @@ sudo systemctl reload apache2
 
 ls /etc/apache2/sites-available/
 
-sudo nano /etc/apache2/sites-available/glpi.alphatech.local.conf
 
-<VirtualHost *:80>
-    ServerName glpi.alphatech.local
-    DocumentRoot /var/www/glpi/public
-
-    <Directory /var/www/glpi/public>
-        Require all granted
-        RewriteEngine On
-        RewriteCond %{REQUEST_FILENAME} !-f
-        RewriteRule ^(.*)$ index.php [QSA,L]
-    </Directory>
-
-    <FilesMatch \.php$>
-        SetHandler "proxy:unix:/run/php/php8.2-fpm.sock|fcgi://localhost/"
-    </FilesMatch>
-
-</VirtualHost>
 
