@@ -88,4 +88,5 @@ post_max_size = 20M
 sudo systemctl restart php8.2-fpm.service
 sudo systemctl restart apache2
 
+sudo tail -n 50 /var/log/apache2/error.log
 
