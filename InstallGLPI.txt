@@ -128,4 +128,22 @@ sudo rm /var/lib/glpi/config/config_db.php
 sudo rm -rf /var/www/html/glpi
 sudo rm -rf /var/lib/glpi
 
+sudo nano /etc/hosts
+172.16.1.4    glpi.alphatech.local
 
+
+sudo ls /etc/apache2/sites-available/
+sudo ls /etc/apache2/sites-enabled/
+
+sudo systemctl status php8.2-fpm
+
+sudo a2ensite glpi.alphatech.local
+sudo systemctl reload apache2
+sudo systemctl restart apache2
+sudo systemctl restart php8.2-fpm
+
+http://172.16.1.4
+http://glpi.alphatech.local
+
+sudo a2ensite glpi.alphatech.local
+sudo systemctl reload apache2
