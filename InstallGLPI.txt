@@ -133,3 +133,7 @@ tar -xvzf glpi-10.0.10.tgz
 sudo cp /tmp/glpi/install/install.php /var/www/html/glpi/install/
 sudo chown -R www-data:www-data /var/www/html/glpi/install
 sudo chmod -R 755 /var/www/html/glpi/install
+
+sudo rm /var/lib/glpi/config/config_db.php
+
+
