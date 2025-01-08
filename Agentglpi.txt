@@ -54,7 +54,7 @@ sudo grep "server" /var/log/glpi-agent/glpi-agent.log
 curl -v http://172.16.1.4/glpi/front/inventory.php
 sudo glpi-agent --server http://172.16.1.4/glpi/front/inventory.php --debug
 
-
+////////////////////////////////////////////////////////////////////////////////////
 sudo nano /etc/apache2/sites-available/glpi.alphatech.local.conf
 
 <VirtualHost *:80>
@@ -76,7 +76,7 @@ sudo nano /etc/apache2/sites-available/glpi.alphatech.local.conf
         RewriteRule ^(.*)$ index.php [QSA,L]
     </Directory>
 </VirtualHost>
-
+////////////////////////////////////////////////////////////////////////////
 sudo a2ensite glpi.alphatech.local.conf
 sudo systemctl reload apache2
 
@@ -85,9 +85,20 @@ sudo nano /etc/php/8.2/apache2/php.ini
 session.cookie_httponly = On
 upload_max_filesize = 20M
 post_max_size = 20M
+display_errors = On
+log_errors = On
+error_log = /var/log/php_errors.log
+
 
 sudo systemctl restart php8.2-fpm.service
 sudo systemctl restart apache2
 
 sudo tail -n 50 /var/log/apache2/error.log
+
+////////////////////////////////////////////////////////////////////////////////
+sudo apt-get install libdata-uuid-perl
+sudo systemctl restart glpi-agent
+sudo glpi-agent --server http://glpi.alphatech.local/front/inventory.php --debug
+
+
 
