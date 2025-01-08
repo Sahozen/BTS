@@ -3,11 +3,12 @@ cd /tmp
 wget https://github.com/glpi-project/glpi-agent/releases/download/1.11/glpi-agent_1.11-1_all.deb
 sudo apt update
 sudo apt install -y wget curl perl libwww-perl libjson-perl libnet-ssleay-perl libnet-cups-perl libproc-daemon-perl
-sudo apt install libnet-ip-perl libnet-ssh2-perl libparse-edid-perl libparallel-forkmanager-perl libuniversal-require-perl libfile-which-perl libxml-libxml-perl libyaml-perl libtext-template-perl libcpanel-json-xs-perl libyaml-tiny-perl libsocket-getaddrinfo-perl libdata-uuid-perl install libdbi-perl libdbd-mysql-perl
+sudo apt install libnet-ip-perl libnet-ssh2-perl libparse-edid-perl libparallel-forkmanager-perl libuniversal-require-perl libfile-which-perl libxml-libxml-perl libyaml-perl libtext-template-perl libcpanel-json-xs-perl libyaml-tiny-perl libsocket-getaddrinfo-perl libdata-uuid-perl libdbi-perl libdbd-mysql-perl
 sudo dpkg -i glpi-agent_1.11-1_all.deb
 glpi-agent --version
 sudo chown -R www-data:www-data /var/www/glpi
 sudo chmod -R 755 /var/www/glpi
+sudo systemctl restart apache2
 sudo systemctl enable glpi-agent
 sudo systemctl start glpi-agent
 sudo systemctl status glpi-agent
@@ -51,3 +52,24 @@ sudo grep "server" /var/log/glpi-agent/glpi-agent.log
 
 curl -v http://172.16.1.4/glpi/front/inventory.php
 sudo glpi-agent --server http://172.16.1.4/glpi/front/inventory.php --debug
+
+
+sudo nano /etc/apache2/sites-available/glpi.alphatech.local.conf
+
+<VirtualHost *:80>
+    ServerName glpi.alphatech.local
+    DocumentRoot /var/www/glpi/public
+
+    <Directory /var/www/glpi/public>
+        Options FollowSymLinks
+        AllowOverride All
+        Require all granted
+    </Directory>
+
+    <FilesMatch "\.php$">
+        SetHandler "proxy:unix:/run/php/php8.2-fpm.sock|fcgi://localhost/"
+    </FilesMatch>
+</VirtualHost>
+
+
+
