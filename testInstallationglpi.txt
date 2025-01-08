@@ -83,3 +83,13 @@ sudo certbot --apache -d glpi.alphatech.local
 # - Accéder via http(s)://glpi.alphatech.local/
 # - Supprimer/renommer install/ après l’installation
 # - Changer les mots de passe par défaut
+
+
+# Supprime le dossier GLPI du répertoire web
+sudo rm -rf /var/www/html/glpi
+sudo a2dissite glpi.conf
+sudo rm /etc/apache2/sites-available/glpi.conf
+sudo systemctl reload apache2
+sudo rm -f /tmp/glpi-10.0.16.tgz
+
+
