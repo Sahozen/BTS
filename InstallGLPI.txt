@@ -89,19 +89,18 @@ define('GLPI_CONFIG_DIR', '/var/lib/glpi/config');
 
 sudo nano /etc/apache2/sites-available/glpi.conf
 
-<Directory /var/www/html/glpi>
-    Options Indexes FollowSymLinks
-    AllowOverride All
-    Require all granted
-</Directory>
+<VirtualHost *:80>
+    ServerName 172.16.1.4
+    DocumentRoot /var/www/html/glpi
 
-<Directory /var/www/html/glpi/files>
-    Require all denied
-</Directory>
+    <Directory /var/www/html/glpi>
+        AllowOverride All
+        Require all granted
+    </Directory>
 
-<Directory /var/www/html/glpi/config>
-    Require all denied
-</Directory>
+    ErrorLog ${APACHE_LOG_DIR}/glpi-error.log
+    CustomLog ${APACHE_LOG_DIR}/glpi-access.log combined
+</VirtualHost>
 
 sudo systemctl reload apache2
 
