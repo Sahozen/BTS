@@ -86,12 +86,19 @@ sudo nano /etc/apache2/sites-available/glpi.alphatech.local.conf
     </FilesMatch>
 </VirtualHost>
 
+
+sudo chmod -R 777 /var/www/glpi/config
+sudo chown -R www-data:www-data /var/www/glpi/config
+
 //////////////////////////////////////////////////////////////////////////
 
 sudo a2ensite glpi.alphatech.local
 sudo a2enmod rewrite proxy_fcgi setenvif
 sudo systemctl reload apache2
 
+//////////////////////////////////////////////////////////////////
 
+sudo chmod -R 755 /var/www/glpi/config
+sudo chown -R www-data:www-data /var/www/glpi/config
 
 
