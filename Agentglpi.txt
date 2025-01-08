@@ -104,3 +104,10 @@ sudo glpi-agent --server http://glpi.alphatech.local/front/inventory.php --debug
     Options FollowSymLinks
     AllowOverride All
 
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^(.*)$ index.php [QSA,L]
+</IfModule>
+
+
