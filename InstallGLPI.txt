@@ -36,17 +36,13 @@ sudo chown www-data /var/log/glpi
 
 sudo nano /var/www/glpi/inc/downstream.php
 
-
-Initialiser sur le serveur web avant de supprimer le installphp
-
-# Supprimer le fichier d'installation pour sécuriser GLPI
-sudo rm /var/www/html/glpi/install/install.php
-
 <?php
 define('GLPI_CONFIG_DIR', '/etc/glpi/');
 if (file_exists(GLPI_CONFIG_DIR . '/local_define.php')) {
     require_once GLPI_CONFIG_DIR . '/local_define.php';
 }
+
+
 
 sudo nano /etc/glpi/local_define.php
 
@@ -55,9 +51,9 @@ define('GLPI_VAR_DIR', '/var/lib/glpi/files');
 define('GLPI_LOG_DIR', '/var/log/glpi');
 
 
-#pour securiser l'installation 
-cd /var/www/html/glpi/install
-sudo rm install.php
+Initialiser sur le serveur web avant de supprimer le installphp
+
+
 
 #Sécuriser le dossier racine du serveur web
 sudo nano /etc/apache2/sites-available/glpi.conf
@@ -79,12 +75,21 @@ sudo nano /etc/apache2/sites-available/glpi.conf
         RewriteCond %{REQUEST_FILENAME} !-f
         RewriteRule ^(.*)$ index.php [QSA,L]
     </Directory>
+    <FilesMatch \.php$>
+        SetHandler "proxy:unix:/run/php/php8.2-fpm.sock|fcgi://localhost/"
+    </FilesMatch>
 </VirtualHost>
 
 sudo a2ensite glpi.alphatech.local
 sudo a2dissite 000-default.conf
 sudo a2enmod rewrite
 sudo systemctl restart apache2
+
+sudo apt-get install php8.2-fpm
+sudo a2enmod proxy_fcgi setenvif
+sudo a2enconf php8.2-fpm
+sudo systemctl reload apache2
+
 
 #pour php
 sudo nano /etc/php/8.2/apache2/php.ini
@@ -93,18 +98,21 @@ chercher : session.cookie_httponly = On
 
 il doit être sur ON
 
+sudo systemctl restart php8.2-fpm.service
+
 sudo systemctl restart apache2
 
 
+# Supprimer le fichier d'installation pour sécuriser GLPI
+sudo rm /var/www/html/glpi/install/install.php
 
-sudo chown www-data:www-data /var/lib/glpi/config/config_db.php
-sudo chmod 640 /var/lib/glpi/config/config_db.php
 
 
-sudo chown -R www-data:www-data /var/lib/glpi/
-sudo chmod -R 750 /var/lib/glpi/
-sudo chmod 640 /var/lib/glpi/config/config_db.php
+#pour securiser l'installation 
+cd /var/www/html/glpi/install
+sudo rm install.php
 
+sudo systemctl restart apache2
 
 
 
