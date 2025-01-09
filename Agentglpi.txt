@@ -47,79 +47,13 @@ sudo rm -rf /var/log/glpi-agent
 sudo rm -rf /var/lib/glpi-agent
 sudo find / -name "glpi-agent" 2>/dev/null
 
+sudo apt-get update
+sudo apt-get install \
+  libxml-treepp-perl \
+  libuniversal-require-perl \
+  libswitch-perl \
+  libhttp-daemon-perl \
+  libfile-copy-recursive-perl \
+  libproc-processtable-perl
 
-cd /var/log/glpi-agent
-ls -l
-sudo tail -f glpi-agent.log
-sudo cat glpi-agent.log
-
-sudo journalctl -u glpi-agent
-sudo grep "server" /var/log/glpi-agent/glpi-agent.log
-
-curl -v http://172.16.1.4/glpi/front/inventory.php
-sudo glpi-agent --server http://172.16.1.4/glpi/front/inventory.php --debug
-
-////////////////////////////////////////////////////////////////////////////////////
-sudo nano /etc/apache2/sites-available/glpi.alphatech.local.conf
-
-<VirtualHost *:80>
-    ServerName glpi.alphatech.local
-
-    DocumentRoot /var/www/glpi/public
-
-    # If you want to place GLPI in a subfolder of your site (e.g. your virtual host is serving multiple applications),
-    # you can use an Alias directive. If you do this, the DocumentRoot directive MUST NOT target the GLPI directory itself.
-    # Alias "/glpi" "/var/www/glpi/public"
-
-    <Directory /var/www/glpi/public>
-        Require all granted
-
-        RewriteEngine On
-
-        # Redirect all requests to GLPI router, unless file exists.
-        RewriteCond %{REQUEST_FILENAME} !-f
-        RewriteRule ^(.*)$ index.php [QSA,L]
-    </Directory>
-</VirtualHost>
-////////////////////////////////////////////////////////////////////////////
-sudo a2ensite glpi.alphatech.local.conf
-sudo systemctl reload apache2
-
-sudo nano /etc/php/8.2/apache2/php.ini
-
-session.cookie_httponly = On
-upload_max_filesize = 20M
-post_max_size = 20M
-display_errors = On
-log_errors = On
-error_log = /var/log/php_errors.log
-
-
-sudo systemctl restart php8.2-fpm.service
-sudo systemctl restart apache2
-
-sudo tail -n 50 /var/log/apache2/error.log
-
-////////////////////////////////////////////////////////////////////////////////
-sudo apt-get install libdata-uuid-perl
-sudo systemctl restart glpi-agent
-sudo glpi-agent --server http://glpi.alphatech.local/front/inventory.php --debug
-
-    Options FollowSymLinks
-    AllowOverride All
-
-<IfModule mod_rewrite.c>
-    RewriteEngine On
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteRule ^(.*)$ index.php [QSA,L]
-</IfModule>
-
-
-sudo apt remove --purge glpi-agent
-sudo apt autoremove --purge
-sudo apt clean
-sudo rm -rf /etc/glpi-agent
-sudo systemctl stop glpi-agent
-sudo systemctl disable glpi-agent
-ps aux | grep glpi-agent
 
