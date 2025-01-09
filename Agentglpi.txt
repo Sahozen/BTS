@@ -6,6 +6,15 @@ sudo apt-get install -y wget curl perl libwww-perl libjson-perl libnet-ssleay-pe
 sudo apt-get install libnet-ip-perl libnet-ssh2-perl libparse-edid-perl libparallel-forkmanager-perl libuniversal-require-perl libfile-which-perl libxml-libxml-perl libyaml-perl libtext-template-perl libcpanel-json-xs-perl libyaml-tiny-perl libsocket-getaddrinfo-perl libdata-uuid-perl libdbi-perl libdbd-mysql-perl
 sudo apt-get install libdata-uuid-perl
 sudo dpkg -i glpi-agent_1.11-1_all.deb
+sudo apt --fix-broken install
+sudo apt-get update
+sudo apt-get install \
+  libxml-treepp-perl \
+  libuniversal-require-perl \
+  libswitch-perl \
+  libhttp-daemon-perl \
+  libfile-copy-recursive-perl \
+  libproc-processtable-perl
 glpi-agent --version
 sudo chown -R www-data:www-data /var/www/glpi
 sudo chmod -R 755 /var/www/glpi
@@ -47,13 +56,6 @@ sudo rm -rf /var/log/glpi-agent
 sudo rm -rf /var/lib/glpi-agent
 sudo find / -name "glpi-agent" 2>/dev/null
 
-sudo apt-get update
-sudo apt-get install \
-  libxml-treepp-perl \
-  libuniversal-require-perl \
-  libswitch-perl \
-  libhttp-daemon-perl \
-  libfile-copy-recursive-perl \
-  libproc-processtable-perl
+
 
 
