@@ -16,3 +16,7 @@ Install-ADDSForest `
 
 New-NetFirewallRule -DisplayName "DNS" -Direction Inbound -Protocol TCP -LocalPort 53 -Action Allow
 New-NetFirewallRule -DisplayName "LDAP" -Direction Inbound -Protocol TCP -LocalPort 389 -Action Allow
+
+New-NetFirewallRule -DisplayName "Autoriser DNS TCP (Port 53)" -Direction Inbound -Protocol TCP -LocalPort 53 -Action Allow
+New-NetFirewallRule -DisplayName "Autoriser DNS UDP (Port 53)" -Direction Inbound -Protocol UDP -LocalPort 53 -Action Allow
+Get-NetFirewallRule | Where-Object DisplayName -like "*DNS*"
