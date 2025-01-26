@@ -60,5 +60,30 @@ sudo find / -name "glpi-agent" 2>/dev/null
 ‪O:\GPO\Application\GLPI-Agent-1.11-x64.msi » RUNNOW=1 ADDLOCAL=feat_NETINV,feat_DEPLOY,feat_COLLECT,feat_WOL SERVER=http://glpi.alphatech.local/front/inventory.php
 
 
+Pour la GPO
+
+# Variables
+$AgentPath = "\\alphatech.local\GPO\Application\GLPI-Agent-1.11-x64.msi"
+$ServerURL = "http://glpi.alphatech.local/front/inventory.php"
+$AgentOptions = "RUNNOW=1 ADDLOCAL=feat_NETINV,feat_DEPLOY,feat_COLLECT,feat_WOL SERVER=$ServerURL"
+
+# Fonction pour vérifier si l'agent est déjà installé
+Function Is-AgentInstalled {
+    $AgentInstalled = Get-WmiObject -Class Win32_Product | Where-Object { $_.Name -like "GLPI Agent*" }
+    return $AgentInstalled -ne $null
+}
+
+# Si l'agent n'est pas installé, procéder à l'installation
+if (-not (Is-AgentInstalled)) {
+    Write-Host "Installation de l'agent GLPI..."
+    Start-Process -FilePath "msiexec.exe" -ArgumentList "/i `"$AgentPath`" $AgentOptions /quiet /norestart" -Wait -NoNewWindow
+    if ($LASTEXITCODE -eq 0) {
+        Write-Host "Agent GLPI installé avec succès."
+    } else {
+        Write-Host "Erreur lors de l'installation de l'agent GLPI."
+    }
+} else {
+    Write-Host "Agent GLPI déjà installé."
+}
 
 
