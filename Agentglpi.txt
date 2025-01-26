@@ -57,7 +57,7 @@ sudo rm -rf /var/lib/glpi-agent
 sudo find / -name "glpi-agent" 2>/dev/null
 
 
- \\Dossier\GLPI-Agent.msi » RUNNOW=1 ADDLOCAL=feat_NETINV,feat_DEPLOY,feat_COLLECT,feat_WOL SERVER=http://glpi.alphatech.local/front/inventory.php
+‪O:\GPO\Application\GLPI-Agent-1.11-x64.msi » RUNNOW=1 ADDLOCAL=feat_NETINV,feat_DEPLOY,feat_COLLECT,feat_WOL SERVER=http://glpi.alphatech.local/front/inventory.php
 
 
 
