@@ -61,6 +61,7 @@ sudo find / -name "glpi-agent" 2>/dev/null
 
 /quiet /i "\\alphatech.local\data\Partage\GPO\Application\GLPI-Agent-1.11-x64.msi" RUNNOW=1 ADD_FIREWALL_EXCEPTION=1 EXECMODE=1 SERVER="http://glpi.alphatech.local/front/inventory.php"
 
+msiexec.exe /i "\\alphatech.local\data\Partage\GPO\Application\GLPI-Agent-1.11-x64.msi" /quiet RUNNOW=1 ADD_FIREWALL_EXCEPTION=1 EXECMODE=1 SERVER="http://glpi.alphatech.local/front/inventory.php"
 
 Pour la GPO
 # Journalisation
