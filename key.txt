@@ -1,3 +1,9 @@
+slmgr /ipk XXXXX-XXXXX-XXXXX-XXXXX-XXXXX
+
+slmgr /ato
+slmgr /dlv
+
+
 Free Windows Server 2022 Standard Product Key
 HP9DJ-NK2X6-4QPCH-8HY8H-6X2XY
 RRNMT-FP29D-CHKCH-GWQP2-DDDVB
@@ -15,8 +21,29 @@ MNF6T-BTCTK-Q4HPP-KP2WG-VCHJH
 NBX99-YG68F-GV6K8-K9KFD-FM8FV
 CMYN7-JWHPM-MVGT4-9639X-KQDWH
 
-Windows Server 2022 Standard        VDYBN-27WPP-V4HQT-9VMD4-VMK7H
-Windows Server 2022 Datacenter      WX4NM-KYWYW-QJJR4-XV3QB-6VM33
+Win 10
+W269N-WFGWX-YVC9B-4J6C9-T83GX
 
 
 https://www.swisstransfer.com/d/5a9abdb3-27c7-4733-a9d6-758f2b0f5d87
+
+slmgr /skms [server]:[port]
+slmgr /skms 192.168.0.250:1688
+slmgr /skms kms8.msguides.com
+* kms8.msguides.com
+* kms.digiboy.ir
+* kms.ddns.net
+* kms.shuax.com
+* kensol263.imwork.net:1688
+* kms789.com
+* dimanyakms.sytes.net:1688
+* kms.03k.org:1688
+* 54.223.212.31
+* kms.cnlic.com
+* hq1.chinancce.com
+* kms.chinancce.com
+* franklv.ddns.net
+* k.zpale.com
+* m.zpale.com
+* mvg.zpale.com
+* xykz.f3322.org
