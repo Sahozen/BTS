@@ -1,3 +1,8 @@
+DISM /Online /Get-TargetEditions
+DISM /online /Set-Edition:ServerStandard /ProductKey:XXXXX-XXXXX-XXXXX-XXXXX-XXXXX /AcceptEula
+slmgr /ipk VDYBN-27WPP-V4HQT-9VMD4-VMK7H
+
+
 DISM /online /Set-Edition:ServerCore /ProductKey:HP9DJ-NK2X6-4QPCH-8HY8H-6X2XY /AcceptEula
 
 slmgr /ipk XXXXX-XXXXX-XXXXX-XXXXX-XXXXX
@@ -32,6 +37,7 @@ https://www.swisstransfer.com/d/5a9abdb3-27c7-4733-a9d6-758f2b0f5d87
 slmgr /skms [server]:[port]
 slmgr /skms 192.168.0.250:1688
 slmgr /skms kms8.msguides.com
+kms9.msguides.com
 * kms8.msguides.com
 * kms.digiboy.ir
 * kms.ddns.net
