@@ -1,3 +1,5 @@
+DISM /online /Set-Edition:ServerCore /ProductKey:HP9DJ-NK2X6-4QPCH-8HY8H-6X2XY /AcceptEula
+
 slmgr /ipk XXXXX-XXXXX-XXXXX-XXXXX-XXXXX
 
 slmgr /ato
