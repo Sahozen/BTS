@@ -19,6 +19,6 @@ sudo find /var/www/ -type f -name "cron.php"
 
 */1 * * * * /usr/bin/php /var/www/glpi/front/cron.php
 
-
+sudo systemctl restart cron
 
 
