@@ -16,3 +16,7 @@ ls -l /etc/glpi/
 sudo crontab -e 
 
 */1 * * * * /usr/bin/php /var/www/glpi/front/cron.php
+
+
+sudo find /var/www/ -type f -name "cron.php"
+
