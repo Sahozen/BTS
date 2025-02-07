@@ -10,3 +10,9 @@ sudo chmod 640 /etc/glpi/local_define.php
 
 
 ls -l /etc/glpi/
+
+
+
+sudo crontab -e 
+
+*/1 * * * * /usr/bin/php /var/www/glpi/front/cron.php
