@@ -20,3 +20,6 @@ New-NetFirewallRule -DisplayName "LDAP" -Direction Inbound -Protocol TCP -LocalP
 New-NetFirewallRule -DisplayName "Autoriser DNS TCP (Port 53)" -Direction Inbound -Protocol TCP -LocalPort 53 -Action Allow
 New-NetFirewallRule -DisplayName "Autoriser DNS UDP (Port 53)" -Direction Inbound -Protocol UDP -LocalPort 53 -Action Allow
 Get-NetFirewallRule | Where-Object DisplayName -like "*DNS*"
+
+
+https://www.swisstransfer.com/d/8c63ce91-cb2e-4e8d-85d4-1a7e808756a7
