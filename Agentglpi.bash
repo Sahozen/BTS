@@ -60,7 +60,7 @@ sudo find / -name "glpi-agent" 2>/dev/null
 
 /quiet /i "\\alphatech.local\data\Partage\GPO\Application\GLPI-Agent-1.11-x64.msi" RUNNOW=1 ADD_FIREWALL_EXCEPTION=1 EXECMODE=1 SERVER="http://glpi.alphatech.local/front/inventory.php"
 
-msiexec.exe /i "\\alphatech.local\data\Partage\GPO\Application\GLPI-Agent-1.11-x64.msi" /quiet RUNNOW=1 ADD_FIREWALL_EXCEPTION=1 EXECMODE=1 SERVER="http://glpi.alphatech.local/front/inventory.php"
+msiexec.exe /i "\\alphatech.local\data\Partage\GPO\Application\openvpn-connect-3.7.2.4253_signed.msi" /quiet RUNNOW=1 ADD_FIREWALL_EXCEPTION=1 EXECMODE=1 ALLUSERS=1 DESKTOP_SHORCUT=1 "
 
 Pour la GPO
 # Journalisation
