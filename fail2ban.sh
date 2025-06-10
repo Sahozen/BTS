@@ -37,7 +37,7 @@ sudo systemctl enable fail2ban
 
 sudo mkdir -p /usr/share/cockpit/fail2ban
 cd /usr/share/cockpit/fail2ban
-sudo git clone https://github.com/mmguero-dev/cockpit-fail2ban.git .
+sudo git clone https://github.com/mmguero-dev/cockpit-fail2ban.git /usr/share/cockpit/fail2ban
 sudo chown -R root:root /usr/share/cockpit/fail2ban
 
 sudo systemctl restart cockpit
@@ -52,6 +52,8 @@ sudo fail2ban-client status
 
 # Voir les IP bannies pour sshd
 sudo fail2ban-client status sshd
+
+sudo fail2ban-client status
 
 #pour deban
 sudo fail2ban-client set sshd unbanip <IP>
