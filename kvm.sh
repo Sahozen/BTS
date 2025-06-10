@@ -14,7 +14,7 @@ slmgr /dlv
 slmgr /skms kms8.msguides.com
 slmgr /ipk W269N-WFGWX-YVC9B-4J6C9-T83GX
 DISM /Online /Get-TargetEditions
-DISM /online /Set-Edition:WindowsWorkstation /ProductKey:W269N-WFGWX-YVC9B-4J6C9-T83GX /AcceptEula
+DISM /online /Set-Edition:ProfessionalWorkstation /ProductKey:W269N-WFGWX-YVC9B-4J6C9-T83GX /AcceptEula
 
 
 Free Windows Server 2022 Standard Product Key
