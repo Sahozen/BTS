@@ -27,6 +27,13 @@ bantime = 600
 sudo systemctl restart fail2ban
 sudo systemctl enable fail2ban
 
+sudo mkdir -p /usr/share/cockpit/fail2ban
+cd /usr/share/cockpit/fail2ban
+sudo git clone https://github.com/mmguero-dev/cockpit-fail2ban.git .
+sudo chown -R root:root /usr/share/cockpit/fail2ban
+
+sudo systemctl restart cockpit
+
 sudo apt install cockpit-fail2ban -y
 
 
