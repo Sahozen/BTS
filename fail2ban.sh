@@ -37,7 +37,8 @@ sudo systemctl enable fail2ban
 
 sudo mkdir -p /usr/share/cockpit/fail2ban
 cd /usr/share/cockpit/fail2ban
-sudo git clone https://github.com/mmguero-dev/cockpit-fail2ban.git /usr/share/cockpit/fail2ban
+sudo git clone https://github.com/andrew-bibb/cockpit-fail2ban.git /usr/share/cockpit/fail2ban
+
 sudo chown -R root:root /usr/share/cockpit/fail2ban
 
 sudo systemctl restart cockpit
