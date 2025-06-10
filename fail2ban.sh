@@ -36,7 +36,7 @@ logpath = /var/log/auth.log
 maxretry = 3
 bantime = 600
 findtime = 3600
-
+action = iptables-multiport[name=sshd, port="ssh", protocol=tcp]
 
 sudo systemctl restart fail2ban
 sudo systemctl enable fail2ban
