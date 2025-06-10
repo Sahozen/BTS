@@ -45,10 +45,18 @@ sudo chown -R root:root /usr/share/cockpit/fail2ban
 
 sudo systemctl restart cockpit
 
-sudo apt install cockpit-fail2ban -y
+sudo apt install nodejs npm -y
+cd /usr/share/cockpit/fail2ban
+sudo npm install
+sudo npm run build
+
 
 
 sudo systemctl restart cockpit
+
+
+
+
 
 # Voir les jails actives
 sudo fail2ban-client status
@@ -61,6 +69,7 @@ sudo fail2ban-client status
 #pour deban
 sudo fail2ban-client set sshd unbanip <IP>
 
+#Pour rejoindre un domaine ad 
 
 sudo apt install realmd sssd sssd-tools krb5-user adcli samba-common-bin -y
 realm discover alphatech.local
