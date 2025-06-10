@@ -14,8 +14,7 @@ sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
 
 sudo nano /etc/fail2ban/jail.local
 
-
-
+#genere les repertoir syslog
 sudo systemctl status rsyslog
 sudo apt install rsyslog -y
 sudo systemctl enable rsyslog
@@ -38,6 +37,7 @@ sudo systemctl enable fail2ban
 sudo systemctl enable --now fail2ban cockpit.socket
 sudo apt install cockpit-fail2ban -y
 sudo systemctl restart cockpit
+#interface graphique
 
 sudo git clone https://github.com/IntelStudios/cockpit-fail2ban.git /usr/share/cockpit/fail2ban
 
@@ -47,6 +47,7 @@ sudo systemctl restart cockpit
 
 sudo apt install nodejs npm -y
 cd /usr/share/cockpit/fail2ban
+sudo npm install --legacy-peer-deps
 sudo npm install
 sudo npm run build
 
