@@ -10,6 +10,12 @@ slmgr /ipk XXXXX-XXXXX-XXXXX-XXXXX-XXXXX
 slmgr /ato
 slmgr /dlv
 
+#pour windows 10 
+slmgr /skms kms8.msguides.com
+slmgr /ipk W269N-WFGWX-YVC9B-4J6C9-T83GX
+DISM /Online /Get-TargetEditions
+DISM /online /Set-Edition:WindowsWorkstation /ProductKey:W269N-WFGWX-YVC9B-4J6C9-T83GX /AcceptEula
+
 
 Free Windows Server 2022 Standard Product Key
 HP9DJ-NK2X6-4QPCH-8HY8H-6X2XY
