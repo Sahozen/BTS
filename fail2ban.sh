@@ -35,9 +35,10 @@ bantime = 600
 sudo systemctl restart fail2ban
 sudo systemctl enable fail2ban
 
-sudo mkdir -p /usr/share/cockpit/fail2ban
-cd /usr/share/cockpit/fail2ban
-sudo git clone https://github.com/m42e/cockpit-fail2ban.git /usr/share/cockpit/fail2ban
+sudo systemctl enable --now fail2ban cockpit.socket
+sudo apt install cockpit-fail2ban -y
+sudo systemctl restart cockpit
+
 
 
 sudo chown -R root:root /usr/share/cockpit/fail2ban
@@ -59,3 +60,8 @@ sudo fail2ban-client status
 
 #pour deban
 sudo fail2ban-client set sshd unbanip <IP>
+
+
+sudo apt install realmd sssd sssd-tools krb5-user adcli samba-common-bin -y
+realm discover alphatech.local
+sudo realm join --user=Administrateur alphatech.local
