@@ -14,6 +14,10 @@ sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
 
 sudo nano /etc/fail2ban/jail.local
 
+
+
+
+
 #genere les repertoir syslog
 sudo systemctl status rsyslog
 sudo apt install rsyslog -y
@@ -22,6 +26,8 @@ sudo systemctl start rsyslog
 
 ls -l /var/log/auth.log
 
+sudo nano /etc/fail2ban/jail.d/sshd.conf
+
 [sshd]
 enabled = true
 port = ssh
@@ -29,6 +35,7 @@ filter = sshd
 logpath = /var/log/auth.log
 maxretry = 3
 bantime = 600
+findtime = 3600
 
 
 sudo systemctl restart fail2ban
