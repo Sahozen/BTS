@@ -39,7 +39,7 @@ sudo systemctl enable --now fail2ban cockpit.socket
 sudo apt install cockpit-fail2ban -y
 sudo systemctl restart cockpit
 
-
+sudo git clone https://github.com/IntelStudios/cockpit-fail2ban.git /usr/share/cockpit/fail2ban
 
 sudo chown -R root:root /usr/share/cockpit/fail2ban
 
