@@ -1,5 +1,5 @@
 @echo off
-msiexec /i "\\%~dp0zabbix_agent2-6.4.3-windows-amd64-openssl.msi" /quiet /norestart ^
+msiexec /i "‪\\alphatech.local\data\Partage\GPO\Application\zabbix_agent2_plugins-7.2.6-windows-amd64.msi" /quiet /norestart ^
 SERVER=172.16.1.3 ^
 SERVERACTIVE=172.16.1.3 ^
 HOSTNAME=%COMPUTERNAME% ^
