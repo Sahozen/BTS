@@ -39,6 +39,9 @@ sudo apt update
 sudo apt install firejail
 sudo firejail --net=none --private /usr/sbin/apache2
 
+sudo apt install firefox-esr -y
+
+
 sudo apt update
 sudo apt install firejail firefox-esr
 
