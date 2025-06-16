@@ -3,6 +3,8 @@
 sudo apt update
 sudo apt install libpam-pwquality
 
+sudo nano /etc/security/pwquality.conf
+
 minlen = 8
 dcredit = -1
 ucredit = -1
