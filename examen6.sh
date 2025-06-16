@@ -71,10 +71,10 @@ sudo find / -type d -name glpi 2>/dev/null
 cd /var/www/glpi/plugins/
 
 ls
-sudo wget https://github.com/glpi-project/glpi-inventory/releases/download/1.6.0/glpi-inventory-1.6.0.tar.gz
-tar -xvzf glpi-inventory-1.6.0.tar.gz
-sudo mv glpi-inventory /var/www/html/glpi/plugins/
-chown -R www-data:www-data /var/www/html/glpi/plugins/glpi-inventory
+sudo https://github.com/glpi-project/glpi-inventory-plugin/releases/download/1.5.3/glpi-glpiinventory-1.5.3.tar.bz2
+tar -xvjf glpi-glpiinventory-1.5.3.tar.bz2
+sudo mv glpi-inventory /var/www/glpi/plugins/
+chown -R www-data:www-data /var/www/glpi/plugins/glpi-inventory
 
 
 
