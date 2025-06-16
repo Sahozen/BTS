@@ -51,6 +51,14 @@ Reading profile /etc/firejail/firefox.profile
 Parent pid 1234, child pid 1235
 ...
 
+sudo apt install chromium -y
+
+firejail chromium
+
+firejail --private chromium
+
+
+
 ps aux | grep firejail
 
 firejail --list
