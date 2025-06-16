@@ -12,6 +12,9 @@ ocredit = -1
 lcredit = -1
 retry = 3
 
+sudo nano /etc/pam.d/common-password
+
+
 sudo adduser testuser
 
 rejet
