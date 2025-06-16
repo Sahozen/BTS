@@ -65,6 +65,9 @@ firejail --list
 
 #glpi inventory 
 
+sudo find / -type d -name glpi 2>/dev/null
+
+
 cd /var/www/html/glpi/plugins/
 ls
 sudo wget https://github.com/glpi-project/glpi-inventory/releases/download/1.6.0/glpi-inventory-1.6.0.tar.gz
