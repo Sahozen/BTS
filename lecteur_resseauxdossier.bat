@@ -1,22 +1,43 @@
 @echo off
-:: 1. Suppression des anciens lecteurs
+:: =========================================================
+:: Script Multi-Processus (Anti-Timeout)
+:: =========================================================
+
+:: 1. Nettoyage (On le fait en direct pour être sûr de repartir propre)
 net use * /delete /yes
 
-:: 2. Lecteur COMMUN (Z:) - Accessible à tous
-net use Z: "\\WIN-SRV2.rania.local\Partage\Commun"
+:: Variable du serveur
+SET SERVEUR=\\WIN-SRV2.rania.local\Partage
 
-:: 3. Tentative de mappage des lecteurs de SERVICE (S, T, L, R, M)
-:: Les >nul 2>&1 servent à cacher l'erreur si l'utilisateur n'a pas le droit
-net use S: "\\WIN-SRV2.rania.local\Partage\Commercial\Commun" >nul 2>&1
-net use T: "\\WIN-SRV2.rania.local\Partage\Compta\Commun" >nul 2>&1
-net use L: "\\WIN-SRV2.rania.local\Partage\Direction\Commun" >nul 2>&1
-net use R: "\\WIN-SRV2.rania.local\Partage\R&D\Commun" >nul 2>&1
-net use M: "\\WIN-SRV2.rania.local\Partage\Support\Commun" >nul 2>&1
+:: 2. Lecteur Z: (Commun)
+:: Celui-ci, on le lance normalement car tout le monde l'a, c'est rapide.
+net use Z: "%SERVEUR%\Commun"
 
-:: 4. Tentative de mappage du lecteur PERSONNEL (U:)
-:: On essaie tous les chemins possibles, seul le bon fonctionnera
-net use U: "\\WIN-SRV2.rania.local\Partage\Commercial\%USERNAME%" >nul 2>&1
-net use U: "\\WIN-SRV2.rania.local\Partage\Compta\%USERNAME%" >nul 2>&1
-net use U: "\\WIN-SRV2.rania.local\Partage\Direction\%USERNAME%" >nul 2>&1
-net use U: "\\WIN-SRV2.rania.local\Partage\R&D\%USERNAME%" >nul 2>&1
-net use U: "\\WIN-SRV2.rania.local\Partage\Support\%USERNAME%" >nul 2>&1
+:: =========================================================
+:: Lancement PARALLÈLE des lecteurs (Non-Bloquant)
+:: La commande 'start' lance un nouveau terminal pour chaque ligne.
+:: Le script principal continue sans attendre la réponse.
+:: =========================================================
+
+:: Syntaxe : start "Titre" /min cmd /c "ta commande"
+:: /min : Lance la fenêtre réduite (invisible ou presque)
+:: cmd /c : Exécute la commande et ferme la fenêtre tout de suite après
+
+:: --- Tentatives pour les SERVICES ---
+start "" /min cmd /c "net use S: \"%SERVEUR%\Commercial\Commun\" >nul 2>&1"
+start "" /min cmd /c "net use T: \"%SERVEUR%\Compta\Commun\" >nul 2>&1"
+start "" /min cmd /c "net use L: \"%SERVEUR%\Direction\Commun\" >nul 2>&1"
+start "" /min cmd /c "net use R: \"%SERVEUR%\R&D\Commun\" >nul 2>&1"
+start "" /min cmd /c "net use M: \"%SERVEUR%\Support\Commun\" >nul 2>&1"
+
+:: --- Tentatives pour le PERSONNEL (U:) ---
+:: On lance 5 processus en même temps. Seul le bon restera, les autres se fermeront en erreur silencieuse.
+start "" /min cmd /c "net use U: \"%SERVEUR%\Commercial\%USERNAME%\" >nul 2>&1"
+start "" /min cmd /c "net use U: \"%SERVEUR%\Compta\%USERNAME%\" >nul 2>&1"
+start "" /min cmd /c "net use U: \"%SERVEUR%\Direction\%USERNAME%\" >nul 2>&1"
+start "" /min cmd /c "net use U: \"%SERVEUR%\R&D\%USERNAME%\" >nul 2>&1"
+start "" /min cmd /c "net use U: \"%SERVEUR%\Support\%USERNAME%\" >nul 2>&1"
+
+:: Le script principal s'arrête ici instantanément, les lecteurs apparaîtront
+:: au fur et à mesure qu'ils réussissent en arrière-plan.
+exit
